@@ -466,31 +466,29 @@ function showResult() {
   }
 
   resultDiv.innerHTML = `
-    <div class="result-wrap">
-      <b>${userNickname}</b>님께 지금 필요한 원석은<br>
-      <b>${topType}</b> 입니다 💎<br><br>
+  <div class="result-wrap">
+    <b>${userNickname}</b>님께 지금 필요한 원석은<br>
+    <b>${topType}</b> 입니다 💎<br><br>
 
-      <div class="crystal-desc">${typeDescriptions[topType]}</div>
+    <div class="crystal-desc">${typeDescriptions[topType]}</div>
 
-<div class="button-group">
-  <div class="cafe-link">
-    <a href="https://naver.me/5owZXdHs" target="_blank">
-      루세테의 원석상점 바로가기 →
-    </a>
+    <div class="button-group">
+      <div class="cafe-link">
+        <a href="https://naver.me/5owZXdHs" target="_blank">
+          루세테의 원석상점 바로가기 →
+        </a>
+      </div>
+
+      <button class="action-btn" onclick="restartQuiz()">🔄 다시 하기</button>
+      <button class="action-btn" onclick="shareTest()">📤 테스트 링크 공유</button>
+    </div>
+
+    <p style="font-size:0.9em; color:#666; margin-top:12px;">
+      당신의 에너지에 어울리는 크리스탈을 만나보세요 🌙
+    </p>
   </div>
-
-  <button class="action-btn" onclick="restartQuiz()">🔄 다시 하기</button>
-  <button class="action-btn" onclick="shareTest()">📤 테스트 링크 공유</button>
-</div>
-
-<p style="font-size:0.9em; color:#666; margin-top:12px;">
-  당신의 에너지에 어울리는 크리스탈을 만나보세요 🌙
-</p>
-
-</div>
-  `;
+`;
 } 
-
 
 function restartQuiz() {
   currentQuestion = 0;
@@ -505,6 +503,9 @@ function shareTest() {
     alert("🔗 테스트 링크가 복사되었습니다!");
   });
 }
+
+
+
   
 
 
