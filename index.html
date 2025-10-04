@@ -200,63 +200,64 @@ let scores = {};
 let userNickname = "";
 
 
-// 20개 원석 초기화
+// ✅ 20개 원석 초기화
 const stones = [
-  "가든쿼츠",       // Garden Quartz
-  "라피스라줄리",   // Lapis Lazuli
-  "래브라도라이트", // Labradorite
-  "레드재스퍼",     // Red Jasper
-  "로도나이트",     // Rhodonite
-  "로즈쿼츠",       // Rose Quartz
-  "말라카이트",     // Malachite
-  "블랙루틸",       // Black Rutilated Quartz
-  "블랙토르마린",   // Black Tourmaline
-  "시트린",         // Citrine
-  "실버옵시디언",   // Silver Obsidian
-  "아루샤썬스톤",   // Arusha Sunstone ✅ (누락 방지)
-  "아메시스트",     // Amethyst
-  "아쿠아마린",     // Aquamarine
-  "카넬리안",       // Carnelian
-  "클리어쿼츠",     // Clear Quartz
-  "레인보우토르마린", // Rainbow Tourmaline
-  "파이어쿼츠",     // Fire Quartz
-  "핑크오팔",       // Pink Opal
-  "하키마"          // Herkimer Diamond
+  "가든쿼츠","라피스라줄리","래브라도라이트","레드재스퍼","로도나이트",
+  "로즈쿼츠","말라카이트","블랙루틸","블랙토르마린","시트린",
+  "실버옵시디언","아루샤썬스톤","아메시스트","아쿠아마린","카넬리안",
+  "클리어쿼츠","레인보우토르마린","파이어쿼츠","핑크오팔","하키마"
 ];
 
-// 점수 초기화
+// ✅ 점수 초기화
+let scores = {};
 stones.forEach(stone => scores[stone] = 0);
 
+let currentQuestion = 0;
+let userNickname = "";
 
+// ✅ 시작 버튼 클릭 시 닉네임 입력창 표시
 function startQuiz() {
   document.getElementById("intro").style.display = "none";
   document.getElementById("nickname-input").style.display = "block";
 }
 
+// ✅ 닉네임 입력 후 질문 시작
 function beginQuestions() {
   const nickname = document.getElementById("nickname").value.trim();
-  if (!nickname) return alert("닉네임을 입력해주세요!");
+  if (!nickname) {
+    alert("닉네임을 입력해주세요!");
+    return;
+  }
   userNickname = nickname;
   document.getElementById("nickname-input").style.display = "none";
   document.getElementById("quiz").style.display = "block";
   showQuestion();
 }
 
+// ✅ 질문 표시 함수
 function showQuestion() {
   const quizDiv = document.getElementById("quiz");
   quizDiv.innerHTML = "";
-  if (currentQuestion >= questions.length) return showResult();
+
+  // 모든 질문 완료 시 결과 출력
+  if (currentQuestion >= questions.length) {
+    showResult();
+    return;
+  }
 
   const q = questions[currentQuestion];
   const questionElem = document.createElement("div");
   questionElem.className = "question";
   questionElem.innerHTML = `<p>${q.text}</p>`;
 
+  // 선택지 버튼 생성
   q.options.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option.text;
     btn.onclick = () => {
-      scores[option.type]++;
+      if (scores[option.type] !== undefined) {
+        scores[option.type]++;
+      }
       currentQuestion++;
       showQuestion();
     };
