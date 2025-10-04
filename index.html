@@ -83,59 +83,108 @@
     }
 
     #result {
-      background: #f8f6ff;
-      color: #222;
-      margin-top: 40px;
-      font-size: 1.1em;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 0 20px rgba(155,100,255,0.15);
-    }
+  background: linear-gradient(180deg, #f7f4ff 0%, #ffffff 100%);
+  border-radius: 24px;
+  padding: 40px 25px;
+  box-shadow: 0 8px 30px rgba(140, 100, 255, 0.15);
+  color: #3b2f5e;
+  font-family: 'SUIT', sans-serif;
+  transition: 0.3s ease-in-out;
+  animation: fadeIn 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
 
-    .crystal-img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 15px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+/* 부드러운 등장 효과 */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .cafe-link {
-      margin-top: 25px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #9c6bff, #6b9dff);
-      border-radius: 10px;
-      padding: 12px 20px;
-      box-shadow: 0 0 15px rgba(155,100,255,0.3);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
+/* 원석 이미지 */
+.crystal-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 25px auto 15px auto;
+  border: 3px solid rgba(150, 130, 255, 0.4);
+  box-shadow: 0 0 20px rgba(150, 120, 255, 0.25);
+  background: radial-gradient(circle, #fff 0%, #e8e1ff 100%);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 
-    .cafe-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(155,100,255,0.5);
-    }
+/* 마우스 따라 은은하게 반짝임 (모바일은 정지) */
+@media (hover: hover) and (pointer: fine) {
+  .crystal-img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 0 35px rgba(160,120,255,0.4);
+  }
+}
 
-    .cafe-link a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.1em;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+/* 크리스탈 설명 텍스트 */
+.crystal-desc {
+  font-family: 'SUIT', sans-serif;
+  font-size: 1.05em;
+  color: #3b2f5e;
+  line-height: 1.6;
+  text-align: center;
+}
 
-    .naver-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
-      background: #fff;
-    }
+/* 카페 링크 버튼 */
+.cafe-link {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #a48fff, #79b7ff);
+  border-radius: 28px;
+  padding: 14px 26px;
+  box-shadow: 0 6px 25px rgba(150,120,255,0.35);
+  transition: all 0.3s ease;
+}
+
+.cafe-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(150,120,255,0.5);
+}
+
+.cafe-link a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.08em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.naver-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+/* 작은 화면에서도 여백 유지 */
+@media (max-width: 480px) {
+  #result {
+    padding: 30px 18px;
+  }
+  .crystal-img {
+    width: 140px;
+    height: 140px;
+  }
+  .cafe-link {
+    padding: 12px 20px;
+  }
+}
 
 
+
+    
 
   </style>
 </head>
