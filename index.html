@@ -187,7 +187,7 @@
   transform: translateY(-2px);
   box-shadow: 0 0 22px rgba(150,120,255,0.5);
 }
-</style>
+
 
     
 
@@ -228,7 +228,7 @@ let userNickname = "";
 
 // 20개 원석 초기화
 const stones = [
-  "로즈쿼츠","시트린","아메시스트","라브라도라이트","스모키쿼츠","문스톤","오닉스",
+  "로즈쿼츠","시트린","아메시스트","래브라도라이트","스모키쿼츠","문스톤","오닉스",
   "아쿠아마린","블랙루틸","에메랄드","라피스라줄리","말라카이트","블랙투르말린",
   "클리어쿼츠","가넷","카넬리언","아마조나이트","선스톤","셀레나이트","피카소재스퍼"
 ];
@@ -273,46 +273,125 @@ function showQuestion() {
 }
 
 const typeDescriptions = {
-  "로즈쿼츠": `<img src="images/rosequartz.jpg" class="crystal-img">
-  💗 <b>로즈쿼츠 (Rose Quartz)</b><br>자기 연민과 사랑의 회복이 필요한 시기입니다.<br>당신의 마음을 부드럽게 감싸주세요.`,
-  "라브라도라이트": `<img src="images/labradorite.jpg" class="crystal-img">
-  ✨ <b>라브라도라이트 (Labradorite)</b><br>새로운 변화가 다가오고 있습니다.<br>두려움 대신 호기심으로 맞이하세요.`,
-  "블랙루틸": `<img src="images/blackrutil.jpg" class="crystal-img">
-  ⚡ <b>블랙 루틸 (Black Rutilated Quartz)</b><br>내면의 힘과 집중이 깨어나고 있습니다.<br>진짜 중요한 것에만 에너지를 써보세요.`,
-  "시트린": `<img src="images/citrine.jpg" class="crystal-img">
-  🌞 <b>시트린 (Citrine)</b><br>당신 안의 밝은 에너지가 세상에 나올 준비를 합니다.<br>풍요와 자신감을 믿으세요.`,
-  "아메시스트": `<img src="images/amethyst.jpg" class="crystal-img">
-  💜 <b>아메시스트 (Amethyst)</b><br>명상과 안정의 시간입니다.<br>혼란을 내려놓고 내면의 고요함을 느껴보세요.`,
-  "스모키쿼츠": `<img src="images/smokyquartz.jpg" class="crystal-img">
-  🤎 <b>스모키쿼츠 (Smoky Quartz)</b><br>지금은 현실에 뿌리내릴 때입니다.<br>그라운딩이 에너지를 회복시켜줄 거예요.`,
-  "문스톤": `<img src="images/moonstone.jpg" class="crystal-img">
-  🌙 <b>문스톤 (Moonstone)</b><br>감정의 흐름을 따라 직관을 믿으세요.<br>마음의 파도를 거스르지 마세요.`,
-  "오닉스": `<img src="images/onyx.jpg" class="crystal-img">
-  ⚫ <b>오닉스 (Onyx)</b><br>흔들림 없는 집중이 필요합니다.<br>당신의 결단이 곧 길이 될 것입니다.`,
-  "아쿠아마린": `<img src="images/aquamarine.jpg" class="crystal-img">
-  💧 <b>아쿠아마린 (Aquamarine)</b><br>소통과 평화의 시기입니다.<br>마음을 열면 관계의 조화가 찾아옵니다.`,
-  "에메랄드": `<img src="images/emerald.jpg" class="crystal-img">
-  💚 <b>에메랄드 (Emerald)</b><br>균형과 사랑의 에너지가 당신을 감쌉니다.<br>사람 사이의 신뢰를 회복하세요.`,
-  "라피스라줄리": `<img src="images/lapis.jpg" class="crystal-img">
-  💙 <b>라피스라줄리 (Lapis Lazuli)</b><br>진실을 마주할 용기.<br>당신의 지혜가 빛을 발할 때입니다.`,
-  "말라카이트": `<img src="images/malachite.jpg" class="crystal-img">
-  🌿 <b>말라카이트 (Malachite)</b><br>변화의 정화가 시작되었습니다.<br>낡은 감정을 흘려보내세요.`,
-  "블랙투르말린": `<img src="images/blacktourmaline.jpg" class="crystal-img">
-  🛡️ <b>블랙투르말린 (Black Tourmaline)</b><br>부정적 에너지로부터 보호받고 있습니다.<br>당신은 안전합니다.`,
-  "클리어쿼츠": `<img src="images/clearquartz.jpg" class="crystal-img">
-  ✨ <b>클리어쿼츠 (Clear Quartz)</b><br>모든 에너지를 정화하고 조화롭게 만듭니다.<br>당신의 중심이 바로 힘입니다.`,
-  "가넷": `<img src="images/garnet.jpg" class="crystal-img">
-  ❤️ <b>가넷 (Garnet)</b><br>용기와 생명력이 회복되고 있습니다.<br>당신의 불씨가 다시 타오릅니다.`,
-  "카넬리언": `<img src="images/carnelian.jpg" class="crystal-img">
-  🧡 <b>카넬리언 (Carnelian)</b><br>행동의 시기입니다.<br>지금 바로 움직이세요, 운이 따릅니다.`,
-  "아마조나이트": `<img src="images/amazonite.jpg" class="crystal-img">
-  💠 <b>아마조나이트 (Amazonite)</b><br>마음의 균형과 평온을 되찾으세요.<br>당신의 진심이 가장 큰 힘입니다.`,
-  "선스톤": `<img src="images/sunstone.jpg" class="crystal-img">
-  🌞 <b>선스톤 (Sunstone)</b><br>긍정 에너지가 솟구칩니다.<br>스스로의 빛을 믿고 당당히 나아가세요.`,
-  "셀레나이트": `<img src="images/selenite.jpg" class="crystal-img">
-  🤍 <b>셀레나이트 (Selenite)</b><br>정화와 명료함의 시간.<br>혼탁한 마음을 비우면 평화가 찾아옵니다.`,
-  "피카소재스퍼": `<img src="images/picassojasper.jpg" class="crystal-img">
-  🎨 <b>피카소 재스퍼 (Picasso Jasper)</b><br>창의력과 표현력이 깨어납니다.<br>당신의 감정을 예술로 풀어보세요.`
+  "로즈쿼츠": `
+  💗 <b>로즈쿼츠 (Rose Quartz)</b><br>
+  자기 연민과 사랑의 회복이 필요한 시기입니다.<br>
+  당신의 마음을 부드럽게 감싸주세요.<br>
+  진정한 사랑은 자기 자신을 있는 그대로 받아들이는 데서 시작됩니다.`,
+
+  "래브라도라이트": `
+  ✨ <b>래브라도라이트 (Labradorite)</b><br>
+  새로운 변화가 다가오고 있습니다.<br>
+  두려움 대신 호기심으로 맞이하세요.<br>
+  이 빛의 돌은 당신 안의 숨은 가능성을 일깨워줍니다.`,
+
+  "블랙루틸": `
+  ⚡ <b>블랙 루틸 (Black Rutilated Quartz)</b><br>
+  내면의 힘과 집중이 깨어나고 있습니다.<br>
+  진짜 중요한 것에만 에너지를 써보세요.<br>
+  강한 의지로 부정적 흐름을 뚫고 나갈 수 있습니다.`,
+
+  "시트린": `
+  🌞 <b>시트린 (Citrine)</b><br>
+  당신 안의 밝은 에너지가 세상에 나올 준비를 합니다.<br>
+  풍요와 자신감을 믿으세요.<br>
+  이 돌은 당신의 꿈을 현실로 바꿔줄 행운의 파동을 지닙니다.`,
+
+  "아메시스트": `
+  💜 <b>아메시스트 (Amethyst)</b><br>
+  명상과 안정의 시간입니다.<br>
+  혼란을 내려놓고 내면의 고요함을 느껴보세요.<br>
+  영적인 통찰과 평온이 당신 곁에 머물 것입니다.`,
+
+  "스모키쿼츠": `
+  🤎 <b>스모키쿼츠 (Smoky Quartz)</b><br>
+  지금은 현실에 뿌리내릴 때입니다.<br>
+  그라운딩이 에너지를 회복시켜줄 거예요.<br>
+  불안한 감정이 안정으로 바뀌는 순간을 경험하게 됩니다.`,
+
+  "문스톤": `
+  🌙 <b>문스톤 (Moonstone)</b><br>
+  감정의 흐름을 따라 직관을 믿으세요.<br>
+  마음의 파도를 거스르지 마세요.<br>
+  달의 에너지가 당신의 감정을 부드럽게 비춥니다.`,
+
+  "오닉스": `
+  ⚫ <b>오닉스 (Onyx)</b><br>
+  흔들림 없는 집중이 필요합니다.<br>
+  당신의 결단이 곧 길이 될 것입니다.<br>
+  인내와 의지를 강화해 주는 강력한 보호석입니다.`,
+
+  "아쿠아마린": `
+  💧 <b>아쿠아마린 (Aquamarine)</b><br>
+  소통과 평화의 시기입니다.<br>
+  마음을 열면 관계의 조화가 찾아옵니다.<br>
+  바다의 에너지가 두려움을 씻어내고 평온을 선사합니다.`,
+
+  "에메랄드": `
+  💚 <b>에메랄드 (Emerald)</b><br>
+  균형과 사랑의 에너지가 당신을 감쌉니다.<br>
+  사람 사이의 신뢰를 회복하세요.<br>
+  진심에서 비롯된 대화가 새로운 조화를 만듭니다.`,
+
+  "라피스라줄리": `
+  💙 <b>라피스라줄리 (Lapis Lazuli)</b><br>
+  진실을 마주할 용기.<br>
+  당신의 지혜가 빛을 발할 때입니다.<br>
+  진리를 추구하는 마음이 영혼의 문을 엽니다.`,
+
+  "말라카이트": `
+  🌿 <b>말라카이트 (Malachite)</b><br>
+  변화의 정화가 시작되었습니다.<br>
+  낡은 감정을 흘려보내세요.<br>
+  새로운 시작을 위한 강력한 치유의 돌입니다.`,
+
+  "블랙투르말린": `
+  🛡️ <b>블랙투르말린 (Black Tourmaline)</b><br>
+  부정적 에너지로부터 보호받고 있습니다.<br>
+  당신은 안전합니다.<br>
+  모든 두려움을 흡수하고 안정된 평화를 선사합니다.`,
+
+  "클리어쿼츠": `
+  ✨ <b>클리어쿼츠 (Clear Quartz)</b><br>
+  모든 에너지를 정화하고 조화롭게 만듭니다.<br>
+  당신의 중심이 바로 힘입니다.<br>
+  순수한 빛의 파동이 당신의 길을 밝혀줍니다.`,
+
+  "가넷": `
+  ❤️ <b>가넷 (Garnet)</b><br>
+  용기와 생명력이 회복되고 있습니다.<br>
+  당신의 불씨가 다시 타오릅니다.<br>
+  열정과 활력을 되찾는 강렬한 재생의 돌입니다.`,
+
+  "카넬리언": `
+  🧡 <b>카넬리언 (Carnelian)</b><br>
+  행동의 시기입니다.<br>
+  지금 바로 움직이세요, 운이 따릅니다.<br>
+  자신감이 다시 불붙으며 새로운 기회가 열립니다.`,
+
+  "아마조나이트": `
+  💠 <b>아마조나이트 (Amazonite)</b><br>
+  마음의 균형과 평온을 되찾으세요.<br>
+  당신의 진심이 가장 큰 힘입니다.<br>
+  부드러운 용기가 당신을 올바른 방향으로 이끌어줍니다.`,
+
+  "선스톤": `
+  🌞 <b>선스톤 (Sunstone)</b><br>
+  긍정 에너지가 솟구칩니다.<br>
+  스스로의 빛을 믿고 당당히 나아가세요.<br>
+  태양처럼 따뜻한 희망이 당신 안에서 빛납니다.`,
+
+  "셀레나이트": `
+  🤍 <b>셀레나이트 (Selenite)</b><br>
+  정화와 명료함의 시간.<br>
+  혼탁한 마음을 비우면 평화가 찾아옵니다.<br>
+  맑은 빛이 당신의 공간과 마음을 깨끗이 씻어줍니다.`,
+
+  "피카소재스퍼": `
+  🎨 <b>피카소 재스퍼 (Picasso Jasper)</b><br>
+  창의력과 표현력이 깨어납니다.<br>
+  당신의 감정을 예술로 풀어보세요.<br>
+  이 돌은 당신의 독창성과 영감을 활짝 열어줍니다.`
 };
 
 
@@ -385,7 +464,7 @@ function shareTest() {
 const questions = [
   { text: "1. 요즘 내 마음을 가장 잘 표현하는 말은?", options: [
     { text: "조금 지쳤지만 버티고 있어", type: "스모키쿼츠" },
-    { text: "새로운 시작이 필요해", type: "라브라도라이트" },
+    { text: "새로운 시작이 필요해", type: "래브라도라이트" },
     { text: "감정이 자주 흔들려", type: "로즈쿼츠" },
     { text: "에너지가 넘치지만 방향이 불분명해", type: "블랙루틸" },
     { text: "그냥 평온하고 싶어", type: "아마조나이트" }
@@ -394,7 +473,7 @@ const questions = [
     { text: "현실적인 안정감", type: "스모키쿼츠" },
     { text: "자기 확신과 용기", type: "카넬리언" },
     { text: "감정의 정화", type: "셀레나이트" },
-    { text: "새로운 가능성", type: "라브라도라이트" },
+    { text: "새로운 가능성", type: "래브라도라이트" },
     { text: "마음의 치유", type: "로즈쿼츠" }
   ]},
   { text: "3. 최근 내가 가장 자주 느끼는 감정은?", options: [
