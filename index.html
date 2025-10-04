@@ -144,13 +144,13 @@
 
 
 .crystal-desc b {
-  display: block;              /* 이미지 밑으로 줄바꿈 */
+  display: inline-block;       /* ✅ block → inline-block (이모티콘과 이름 한 줄 정렬) */
   margin-top: 12px;            /* 이미지와 이름 사이 간격 */
-  font-size: 1.2em;
+  font-size: 1.25em;           /* 설명보다 살짝 크게 */
   font-weight: 700;
   color: #3b2f5e;
   letter-spacing: 0.5px;       /* 글자 간격 약간 넓힘 */
-  text-align: center;          /* 혹시 몰라서 명시 */
+  text-align: center;          /* 혹시 몰라 명시 */
 }
 
 
