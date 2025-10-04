@@ -318,6 +318,7 @@ const typeDescriptions = {
   🎨 <b>피카소 재스퍼 (Picasso Jasper)</b><br>창의력과 표현력이 깨어납니다.<br>당신의 감정을 예술로 풀어보세요.`
 };
 
+
 function showResult() {
   const resultDiv = document.getElementById("result");
   document.getElementById("quiz").style.display = "none";
@@ -331,30 +332,38 @@ function showResult() {
     }
   }
 
-resultDiv.innerHTML = `
-  <b>${userNickname}</b>님께 지금 필요한 원석은<br>
-  <b>${topType}</b> 입니다 💎<br><br>
+  resultDiv.innerHTML = `
+    <div class="result-wrap">
+      <b>${userNickname}</b>님께 지금 필요한 원석은<br>
+      <b>${topType}</b> 입니다 💎<br><br>
 
-  ${typeDescriptions[topType]
-    .replace('<img', '<div class="result-wrap"><img')
-    .replace('</b>', '</b></div>')} 
+      ${typeDescriptions[topType]}
 
-  <br>
-  <div class="cafe-link">
-    <a href="https://naver.me/5owZXdHs" target="_blank">
-      <img src="https://ssl.pstatic.net/static/cafe/cafe_pc/favicon.ico" alt="네이버카페" class="naver-icon">
-      루세테의 원석상점
-    </a>
-  </div>
-  <p style="font-size:0.9em; color:#666; margin-top:10px;">
-    당신의 에너지에 어울리는 크리스탈을 만나보세요 🌙
-  </p>
-`;
+      <div class="button-group">
+        <div class="cafe-link">
+          <a href="https://naver.me/5owZXdHs" target="_blank">
+            <img src="https://ssl.pstatic.net/static/cafe/cafe_pc/favicon.ico" alt="네이버카페" class="naver-icon">
+            루세테의 원석상점
+          </a>
+        </div>
 
+        <button class="action-btn" onclick="restartQuiz()">🔄 다시 하기</button>
+        <button class="action-btn" onclick="shareTest()">📤 테스트 링크 공유</button>
+      </div>
+
+      <p style="font-size:0.9em; color:#666; margin-top:10px;">
+        당신의 에너지에 어울리는 크리스탈을 만나보세요 🌙
+      </p>
+    </div>
+  `;
+}
 
 
   
-}
+
+
+  
+
 
 // 예시 질문 (15개로 확장 가능)
 const questions = [
