@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>지금 나에게 필요한 원석은?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- 폰트 -->
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'SUIT', 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      margin: 40px 0 5px 0;
+      color: #6b5cff;
+      text-shadow: 0 0 6px rgba(107,157,255,0.3);
+      letter-spacing: 1.5px;
+    }
+
+    .subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      color: #8c6bff;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .container { 
+      width: 100%; 
+      max-width: 700px; 
+      padding: 20px; 
+    }
+
+    .question, .intro {
+      background: #f8f6ff;
+      margin: 30px 0;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    button, .action-btn {
+      background: linear-gradient(135deg, #9c6bff, #6b9dff);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 20px;
+      width: 90%;
+      max-width: 420px;
+      margin: 12px auto;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover, .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(155,100,255,0.4);
+    }
+
+    #result {
+      background: #f8f6ff;
+      color: #222;
+      margin-top: 40px;
+      font-size: 1.1em;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(155,100,255,0.15);
+    }
+
+    .crystal-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 15px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .cafe-link {
+      margin-top: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #9c6bff, #6b9dff);
+      border-radius: 10px;
+      padding: 12px 20px;
+      box-shadow: 0 0 15px rgba(155,100,255,0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .cafe-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(155,100,255,0.5);
+    }
+
+    .cafe-link a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .naver-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>💎 지금 나에게 필요한 원석은?</h1>
+  <p class="subtitle">✨ Which Crystal Resonates with Your Energy Now? ✨</p>
+
+  <div class="container">
+    <!-- 시작화면 -->
+    <div id="intro" class="intro">
+      <p>당신의 현재 에너지 상태에 가장 공명하는 원석을 찾아보세요.<br>
+      15개의 질문을 통해 지금의 당신에게 필요한 크리스탈을 알려드립니다.</p>
+      <button onclick="startQuiz()">💎 테스트 시작하기</button>
+    </div>
+
+    <!-- 닉네임 입력 -->
+    <div id="nickname-input" class="intro" style="display:none;">
+      <p>당신의 닉네임을 입력해주세요</p>
+      <input type="text" id="nickname" placeholder="닉네임" 
+        style="padding:10px; border-radius:8px; border:1px solid #ccc; width:80%; max-width:300px; text-align:center;">
+      <button onclick="beginQuestions()">시작하기</button>
+    </div>
+
+    <!-- 질문 -->
+    <div id="quiz" style="display:none;"></div>
+
+    <!-- 결과 -->
+    <div id="result"></div>
+  </div>
+
+<script>
+let currentQuestion = 0;
+let scores = {};
+let userNickname = "";
+
+// 20개 원석 초기화
+const stones = [
+  "로즈쿼츠","시트린","아메시스트","라브라도라이트","스모키쿼츠","문스톤","오닉스",
+  "아쿠아마린","블랙루틸","에메랄드","라피스라줄리","말라카이트","블랙투르말린",
+  "클리어쿼츠","가넷","카넬리언","아마조나이트","선스톤","셀레나이트","피카소재스퍼"
+];
+stones.forEach(stone => scores[stone] = 0);
+
+function startQuiz() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("nickname-input").style.display = "block";
+}
+
+function beginQuestions() {
+  const nickname = document.getElementById("nickname").value.trim();
+  if (!nickname) return alert("닉네임을 입력해주세요!");
+  userNickname = nickname;
+  document.getElementById("nickname-input").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  showQuestion();
+}
+
+function showQuestion() {
+  const quizDiv = document.getElementById("quiz");
+  quizDiv.innerHTML = "";
+  if (currentQuestion >= questions.length) return showResult();
+
+  const q = questions[currentQuestion];
+  const questionElem = document.createElement("div");
+  questionElem.className = "question";
+  questionElem.innerHTML = `<p>${q.text}</p>`;
+
+  q.options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.textContent = option.text;
+    btn.onclick = () => {
+      scores[option.type]++;
+      currentQuestion++;
+      showQuestion();
+    };
+    questionElem.appendChild(btn);
+  });
+
+  quizDiv.appendChild(questionElem);
+}
+
+const typeDescriptions = {
+  "로즈쿼츠": `<img src="images/rosequartz.jpg" class="crystal-img">
+  💗 <b>로즈쿼츠 (Rose Quartz)</b><br>자기 연민과 사랑의 회복이 필요한 시기입니다.<br>당신의 마음을 부드럽게 감싸주세요.`,
+  "라브라도라이트": `<img src="images/labradorite.jpg" class="crystal-img">
+  ✨ <b>라브라도라이트 (Labradorite)</b><br>새로운 변화가 다가오고 있습니다.<br>두려움 대신 호기심으로 맞이하세요.`,
+  "블랙루틸": `<img src="images/blackrutil.jpg" class="crystal-img">
+  ⚡ <b>블랙 루틸 (Black Rutilated Quartz)</b><br>내면의 힘과 집중이 깨어나고 있습니다.<br>진짜 중요한 것에만 에너지를 써보세요.`,
+  "시트린": `<img src="images/citrine.jpg" class="crystal-img">
+  🌞 <b>시트린 (Citrine)</b><br>당신 안의 밝은 에너지가 세상에 나올 준비를 합니다.<br>풍요와 자신감을 믿으세요.`,
+  "아메시스트": `<img src="images/amethyst.jpg" class="crystal-img">
+  💜 <b>아메시스트 (Amethyst)</b><br>명상과 안정의 시간입니다.<br>혼란을 내려놓고 내면의 고요함을 느껴보세요.`,
+  "스모키쿼츠": `<img src="images/smokyquartz.jpg" class="crystal-img">
+  🤎 <b>스모키쿼츠 (Smoky Quartz)</b><br>지금은 현실에 뿌리내릴 때입니다.<br>그라운딩이 에너지를 회복시켜줄 거예요.`,
+  "문스톤": `<img src="images/moonstone.jpg" class="crystal-img">
+  🌙 <b>문스톤 (Moonstone)</b><br>감정의 흐름을 따라 직관을 믿으세요.<br>마음의 파도를 거스르지 마세요.`,
+  "오닉스": `<img src="images/onyx.jpg" class="crystal-img">
+  ⚫ <b>오닉스 (Onyx)</b><br>흔들림 없는 집중이 필요합니다.<br>당신의 결단이 곧 길이 될 것입니다.`,
+  "아쿠아마린": `<img src="images/aquamarine.jpg" class="crystal-img">
+  💧 <b>아쿠아마린 (Aquamarine)</b><br>소통과 평화의 시기입니다.<br>마음을 열면 관계의 조화가 찾아옵니다.`,
+  "에메랄드": `<img src="images/emerald.jpg" class="crystal-img">
+  💚 <b>에메랄드 (Emerald)</b><br>균형과 사랑의 에너지가 당신을 감쌉니다.<br>사람 사이의 신뢰를 회복하세요.`,
+  "라피스라줄리": `<img src="images/lapis.jpg" class="crystal-img">
+  💙 <b>라피스라줄리 (Lapis Lazuli)</b><br>진실을 마주할 용기.<br>당신의 지혜가 빛을 발할 때입니다.`,
+  "말라카이트": `<img src="images/malachite.jpg" class="crystal-img">
+  🌿 <b>말라카이트 (Malachite)</b><br>변화의 정화가 시작되었습니다.<br>낡은 감정을 흘려보내세요.`,
+  "블랙투르말린": `<img src="images/blacktourmaline.jpg" class="crystal-img">
+  🛡️ <b>블랙투르말린 (Black Tourmaline)</b><br>부정적 에너지로부터 보호받고 있습니다.<br>당신은 안전합니다.`,
+  "클리어쿼츠": `<img src="images/clearquartz.jpg" class="crystal-img">
+  ✨ <b>클리어쿼츠 (Clear Quartz)</b><br>모든 에너지를 정화하고 조화롭게 만듭니다.<br>당신의 중심이 바로 힘입니다.`,
+  "가넷": `<img src="images/garnet.jpg" class="crystal-img">
+  ❤️ <b>가넷 (Garnet)</b><br>용기와 생명력이 회복되고 있습니다.<br>당신의 불씨가 다시 타오릅니다.`,
+  "카넬리언": `<img src="images/carnelian.jpg" class="crystal-img">
+  🧡 <b>카넬리언 (Carnelian)</b><br>행동의 시기입니다.<br>지금 바로 움직이세요, 운이 따릅니다.`,
+  "아마조나이트": `<img src="images/amazonite.jpg" class="crystal-img">
+  💠 <b>아마조나이트 (Amazonite)</b><br>마음의 균형과 평온을 되찾으세요.<br>당신의 진심이 가장 큰 힘입니다.`,
+  "선스톤": `<img src="images/sunstone.jpg" class="crystal-img">
+  🌞 <b>선스톤 (Sunstone)</b><br>긍정 에너지가 솟구칩니다.<br>스스로의 빛을 믿고 당당히 나아가세요.`,
+  "셀레나이트": `<img src="images/selenite.jpg" class="crystal-img">
+  🤍 <b>셀레나이트 (Selenite)</b><br>정화와 명료함의 시간.<br>혼탁한 마음을 비우면 평화가 찾아옵니다.`,
+  "피카소재스퍼": `<img src="images/picassojasper.jpg" class="crystal-img">
+  🎨 <b>피카소 재스퍼 (Picasso Jasper)</b><br>창의력과 표현력이 깨어납니다.<br>당신의 감정을 예술로 풀어보세요.`
+};
+
+function showResult() {
+  const resultDiv = document.getElementById("result");
+  document.getElementById("quiz").style.display = "none";
+
+  let topType = null;
+  let maxScore = -1;
+  for (let key in scores) {
+    if (scores[key] > maxScore) {
+      maxScore = scores[key];
+      topType = key;
+    }
+  }
+
+  resultDiv.innerHTML = `
+    <b>${userNickname}</b>님께 지금 필요한 원석은<br>
+    <b>${topType}</b> 입니다 💎<br><br>
+    ${typeDescriptions[topType]}<br><br>
+    <div class="cafe-link">
+      <a href="https://naver.me/5owZXdHs" target="_blank">
+        <img src="https://ssl.pstatic.net/static/cafe/cafe_pc/favicon.ico" alt="네이버카페" class="naver-icon">
+        루세테의 원석상점
+      </a>
+    </div>
+    <p style="font-size:0.9em; color:#666; margin-top:10px;">
+      당신의 에너지에 어울리는 크리스탈을 만나보세요 🌙
+    </p>
+  `;
+}
+
+// 예시 질문 (15개로 확장 가능)
+const questions = [
+  { text: "1. 요즘 내 마음을 가장 잘 표현하는 말은?", options: [
+    { text: "조금 지쳤지만 버티고 있어", type: "스모키쿼츠" },
+    { text: "새로운 시작이 필요해", type: "라브라도라이트" },
+    { text: "감정이 자주 흔들려", type: "로즈쿼츠" },
+    { text: "에너지가 넘치지만 방향이 불분명해", type: "블랙루틸" },
+    { text: "그냥 평온하고 싶어", type: "아마조나이트" }
+  ]},
+  { text: "2. 지금의 나에게 가장 필요한 것은?", options: [
+    { text: "현실적인 안정감", type: "스모키쿼츠" },
+    { text: "자기 확신과 용기", type: "카넬리언" },
+    { text: "감정의 정화", type: "셀레나이트" },
+    { text: "새로운 가능성", type: "라브라도라이트" },
+    { text: "마음의 치유", type: "로즈쿼츠" }
+  ]},
+  { text: "3. 최근 내가 가장 자주 느끼는 감정은?", options: [
+    { text: "혼란스러움", type: "라피스라줄리" },
+    { text: "답답함", type: "스모키쿼츠" },
+    { text: "의욕 저하", type: "선스톤" },
+    { text: "불안감", type: "블랙투르말린" },
+    { text: "평화로움", type: "아쿠아마린" }
+  ]}
+];
+</script>
+</body>
+</html>
