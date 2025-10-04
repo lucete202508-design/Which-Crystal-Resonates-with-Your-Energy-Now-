@@ -190,6 +190,38 @@
   }
 }
 
+.result-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.button-group {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #8e6bff, #6bb5ff);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: 220px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 0 12px rgba(150,120,255,0.3);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(150,120,255,0.5);
+}
 
 
     
@@ -332,6 +364,9 @@ function showResult() {
     }
   }
 
+
+  
+
   resultDiv.innerHTML = `
     <div class="result-wrap">
       <b>${userNickname}</b>님께 지금 필요한 원석은<br>
@@ -359,6 +394,19 @@ function showResult() {
 }
 
 
+function restartQuiz() {
+  currentQuestion = 0;
+  for (let key in scores) scores[key] = 0;
+  document.getElementById("result").style.display = "none";
+  document.getElementById("intro").style.display = "block";
+}
+
+function shareTest() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    alert("🔗 테스트 링크가 복사되었습니다!");
+  });
+}
   
 
 
