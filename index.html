@@ -82,7 +82,9 @@
       box-shadow: 0 0 15px rgba(155,100,255,0.4);
     }
 
-    #result {
+<style>
+/* 결과 영역 */
+#result {
   background: linear-gradient(180deg, #f7f4ff 0%, #ffffff 100%);
   border-radius: 24px;
   padding: 40px 25px;
@@ -93,22 +95,15 @@
   animation: fadeIn 0.8s ease forwards;
   opacity: 0;
   transform: translateY(20px);
-
-      /* ✅ 중앙 정렬 추가 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-
 }
 
 /* 부드러운 등장 효과 */
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 원석 이미지 */
@@ -117,33 +112,25 @@
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 25px auto 15px auto;
+  margin: 30px auto 20px auto;
   border: 3px solid rgba(150, 130, 255, 0.4);
-  box-shadow: 0 0 20px rgba(150, 120, 255, 0.25);
-  background: radial-gradient(circle, #fff 0%, #e8e1ff 100%);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 25px rgba(150, 120, 255, 0.25);
+  background: radial-gradient(circle, #fff 0%, #ebe5ff 100%);
 }
 
-/* 마우스 따라 은은하게 반짝임 (모바일은 정지) */
-@media (hover: hover) and (pointer: fine) {
-  .crystal-img:hover {
-    transform: scale(1.05) rotate(1deg);
-    box-shadow: 0 0 35px rgba(160,120,255,0.4);
-  }
-}
-
-/* 크리스탈 설명 텍스트 */
+/* 원석 설명 */
 .crystal-desc {
   font-family: 'SUIT', sans-serif;
   font-size: 1.05em;
   color: #3b2f5e;
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.7;
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
-/* 카페 링크 버튼 */
+/* 카페 버튼 */
 .cafe-link {
-  margin-top: 28px;
+  margin-top: 15px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -153,12 +140,10 @@
   box-shadow: 0 6px 25px rgba(150,120,255,0.35);
   transition: all 0.3s ease;
 }
-
 .cafe-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 35px rgba(150,120,255,0.5);
 }
-
 .cafe-link a {
   text-decoration: none;
   color: #fff;
@@ -168,7 +153,6 @@
   align-items: center;
   gap: 8px;
 }
-
 .naver-icon {
   width: 22px;
   height: 22px;
@@ -176,53 +160,34 @@
   background: #fff;
 }
 
-/* 작은 화면에서도 여백 유지 */
-@media (max-width: 480px) {
-  #result {
-    padding: 30px 18px;
-  }
-  .crystal-img {
-    width: 140px;
-    height: 140px;
-  }
-  .cafe-link {
-    padding: 12px 20px;
-  }
-}
-
-.result-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
+/* 버튼 묶음 */
 .button-group {
-  margin-top: 25px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
+/* 다시하기 & 공유 버튼 — 카페 버튼과 동일 크기 */
 .action-btn {
   background: linear-gradient(135deg, #8e6bff, #6bb5ff);
   color: #fff;
   font-weight: 600;
   border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  width: 220px;
+  border-radius: 28px;
+  padding: 14px 26px;
+  width: 260px;
+  font-size: 1.08em;
   cursor: pointer;
   transition: 0.25s ease;
-  box-shadow: 0 0 12px rgba(150,120,255,0.3);
+  box-shadow: 0 0 15px rgba(150,120,255,0.3);
 }
-
 .action-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 18px rgba(150,120,255,0.5);
+  box-shadow: 0 0 22px rgba(150,120,255,0.5);
 }
-
+</style>
 
     
 
