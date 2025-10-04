@@ -98,6 +98,8 @@
   margin: 0 auto;
   box-sizing: border-box;  /* ✅ 패딩 포함 계산 */
   text-align: center;
+  transition: all 0.8s ease;   /* 이 줄 추가 */
+
 }
 
 /* ✅ 반응형 원석 이미지 */
@@ -453,9 +455,10 @@ function showResult() {
   </div>
   `;
 
-  // ✅ 여기! HTML 아래쪽에 추가해야 실제로 표시됨
-  resultDiv.style.opacity = "1";      
-  resultDiv.style.display = "block";  
+  // ✅ 이 두 줄은 HTML 밖으로 (지금은 텍스트로 인식돼서 작동안 함)
+  resultDiv.style.display = "block";
+  resultDiv.style.opacity = "1";
+  
 }
 
  
