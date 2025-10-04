@@ -112,10 +112,11 @@
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 30px auto 20px auto;
+  margin: 30px auto 10px auto;  /* 아래 간격 살짝 줄임 */
   border: 3px solid rgba(150, 130, 255, 0.4);
   box-shadow: 0 0 25px rgba(150, 120, 255, 0.25);
   background: radial-gradient(circle, #fff 0%, #ebe5ff 100%);
+  display: block;              /* ✅ 가운데 정렬 핵심 */
 }
 
 /* 원석 설명 */
@@ -126,7 +127,32 @@
   line-height: 1.7;
   margin-top: 10px;
   margin-bottom: 25px;
+  text-align: center;          /* ✅ 전체 중앙 정렬 */
 }
+
+.crystal-desc img {
+  display: block;              /* ✅ 이미지 가운데로 */
+  margin: 30px auto 10px auto; /* 위/아래 여백 조정 */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(150, 130, 255, 0.4);
+  box-shadow: 0 0 25px rgba(150, 120, 255, 0.25);
+  background: radial-gradient(circle, #fff 0%, #ebe5ff 100%);
+}
+
+.crystal-desc b {
+  display: block;              /* 이미지 밑으로 줄바꿈 */
+  margin-top: 12px;            /* 이미지와 이름 사이 간격 */
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #3b2f5e;
+  letter-spacing: 0.5px;       /* 글자 간격 약간 넓힘 */
+  text-align: center;          /* 혹시 몰라서 명시 */
+}
+
+
 
 /* 카페 버튼 */
 .cafe-link {
