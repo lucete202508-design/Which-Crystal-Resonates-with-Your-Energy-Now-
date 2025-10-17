@@ -95,7 +95,7 @@
 
 
 
-    /* ✅ 반응형 결과 박스 */
+   
 #result {
   background: linear-gradient(180deg, #f7f4ff 0%, #ffffff 100%);
   border-radius: 24px;
@@ -106,21 +106,21 @@
   animation: fadeIn 0.8s ease forwards;
   opacity: 0;
   transform: translateY(20px);
-  width: 90%;              /* ✅ 화면 크기에 맞게 조정 */
-  max-width: 480px;        /* ✅ 너무 넓어지지 않게 제한 */
+  width: 90%;              
+  max-width: 480px;        
   margin: 0 auto;
-  box-sizing: border-box;  /* ✅ 패딩 포함 계산 */
+  box-sizing: border-box;  
   text-align: center;
-  transition: all 0.8s ease;   /* 이 줄 추가 */
-  display: none; /* ✅ 반드시 추가 */
+  transition: all 0.8s ease;   
+  display: none; 
 
 }
 
-/* ✅ 반응형 원석 이미지 */
+
 .crystal-img {
-  width: 80%;              /* ✅ 화면 폭 기준 */
-  max-width: 220px;        /* ✅ 너무 커지지 않게 */
-  height: auto;            /* ✅ 세로 자동 */
+  width: 80%;             
+  max-width: 220px;       
+  height: auto;            
   border-radius: 50%;
   object-fit: cover;
   margin: 25px auto 10px auto;
@@ -130,7 +130,7 @@
   display: block;
 }
 
-/* ✅ 작은 화면 대응 */
+
 @media (max-width: 480px) {
   h1 {
     font-size: 1.7em;
@@ -151,19 +151,19 @@
 }
 
 
-    /* ✅ 결과 전체 박스 정렬 보정 */
+   
 .result-wrap {
   width: 90%;
   max-width: 480px;
   margin: 0 auto;
   box-sizing: border-box;
   text-align: center;
-  overflow: hidden; /* 이미지가 넘치지 않게 */
+  overflow: hidden; 
 }
 
 .crystal-img {
-  width: 200px;              /* ✅ 고정 크기 */
-  height: 200px;             /* ✅ 정사각형 유지 */
+  width: 200px;             
+  height: 200px;            
   border-radius: 50%;
   object-fit: cover;
   margin: 25px auto 10px auto;
@@ -188,14 +188,14 @@
   <p class="subtitle">✨ Which Crystal Resonates with Your Energy Now? ✨</p>
 
   <div class="container">
-    <!-- 시작화면 -->
+    
     <div id="intro" class="intro">
       <p>당신의 현재 에너지 상태에 가장 공명하는 원석을 찾아보세요.<br>
       15개의 질문을 통해 지금의 당신에게 필요한 크리스탈을 알려드립니다.</p>
       <button onclick="startQuiz()">💎 테스트 시작하기</button>
     </div>
 
-    <!-- 닉네임 입력 -->
+   
     <div id="nickname-input" class="intro" style="display:none;">
       <p>당신의 닉네임을 입력해주세요</p>
       <input type="text" id="nickname" placeholder="닉네임" 
@@ -203,20 +203,19 @@
       <button onclick="beginQuestions()">시작하기</button>
     </div>
 
-    <!-- 질문 -->
+   
     <div id="quiz" style="display:none;"></div>
 
-    <!-- 결과 -->
+    
     <div id="result"></div>
   </div>
 
 <script>
-/* ✅ 변수 및 초기화 순서 제대로 정리 */
+
 let currentQuestion = 0;
 let userNickname = "";
-let scores = {};   // ← 여기에 먼저 선언하고
+let scores = {};   
 
-/* ✅ 20개 원석 목록 */
 const stones = [
   "가든쿼츠","라피스라줄리","래브라도라이트","레드재스퍼","로도나이트",
   "로즈쿼츠","말라카이트","블랙루틸","블랙토르마린","시트린",
@@ -224,17 +223,17 @@ const stones = [
   "클리어쿼츠","레인보우토르마린","파이어쿼츠","핑크오팔","하키마"
 ];
 
-/* ✅ 이제 여기서 초기화 */
+
 stones.forEach(stone => scores[stone] = 0);
 
 
-// ✅ 시작 버튼 클릭 시 닉네임 입력창 표시
+
 function startQuiz() {
   document.getElementById("intro").style.display = "none";
   document.getElementById("nickname-input").style.display = "block";
 }
 
-// ✅ 닉네임 입력 후 질문 시작
+
 function beginQuestions() {
   const nickname = document.getElementById("nickname").value.trim();
   if (!nickname) {
@@ -247,12 +246,12 @@ function beginQuestions() {
   showQuestion();
 }
 
-// ✅ 질문 표시 함수
+
 function showQuestion() {
   const quizDiv = document.getElementById("quiz");
   quizDiv.innerHTML = "";
 
-  // 모든 질문 완료 시 결과 출력
+  
   if (currentQuestion >= questions.length) {
     showResult();
     return;
@@ -263,7 +262,7 @@ function showQuestion() {
   questionElem.className = "question";
   questionElem.innerHTML = `<p>${q.text}</p>`;
 
-  // 선택지 버튼 생성
+  
   q.options.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option.text;
@@ -453,7 +452,7 @@ function showResult() {
     <div class="crystal-desc">${typeDescriptions[topType]}</div>
 
 
-    <br><br> <!-- ✅ 여기 추가: 설명과 버튼 사이 여백 -->
+    <br><br> 
 
 
 
@@ -475,7 +474,7 @@ function showResult() {
   </div>
   `;
 
-  // ✅ 이 두 줄은 HTML 밖으로 (지금은 텍스트로 인식돼서 작동안 함)
+  
   resultDiv.style.display = "block";
   resultDiv.style.opacity = "1";
   
@@ -505,7 +504,7 @@ function shareTest() {
   
 
 
-// ✅ 15개 질문 버전
+
 const questions = [
   { text: "1. 요즘 내 마음을 가장 잘 표현하는 말은?", options: [
     { text: "조금 지쳤지만 버티고 있어", type: "가든쿼츠" },
